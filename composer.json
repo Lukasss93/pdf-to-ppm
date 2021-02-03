@@ -1,0 +1,43 @@
+{
+    "name": "lukasss93/pdf-to-ppm",
+    "description": "PHP wrapper for the pdftoppm command which is part of poppler-utils.",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luca Patera",
+            "email": "lucapatera@oulook.it",
+            "homepage": "https://www.lucapatera.it/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "alchemy/binary-driver": "^5.2",
+        "psr/log": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lukasss93\\PdfToPpm\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lukasss93\\PdfToPpm\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "@php vendor/phpunit/phpunit/phpunit --colors=always"
+        ],
+        "test-coverage": [
+            "@php vendor/phpunit/phpunit/phpunit --colors=always --bootstrap vendor/autoload.php --configuration phpunit.xml.dist --coverage-clover coverage.xml"
+        ]
+    }
+}
