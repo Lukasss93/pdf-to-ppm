@@ -6,6 +6,7 @@ use Alchemy\BinaryDriver\AbstractBinary;
 use Alchemy\BinaryDriver\Configuration;
 use Alchemy\BinaryDriver\ConfigurationInterface;
 use Alchemy\BinaryDriver\Exception\ExecutableNotFoundException;
+use Lukasss93\PdfToPpm\Runners\ProcessRunner;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 
@@ -39,7 +40,8 @@ class PdfToPpmDriver extends AbstractBinary
 
         $binaries = $configuration->get('pdftoppm.binaries', ['pdftoppm']);
 
-        return static::load($binaries, $logger, $configuration);
+        return static::load($binaries, $logger, $configuration)
+            ->setProcessRunner(new ProcessRunner());
     }
 
     /**
@@ -51,7 +53,7 @@ class PdfToPpmDriver extends AbstractBinary
      */
     public function getVersion(): string
     {
-        $valid = preg_match('/pdftoppm version (.*)/', $this->command('-v'), $version);
+        $valid = preg_match('/pdftoppm version (.*)/', $this->command(['-v']), $version);
         if ($valid === false || !isset($version[1])) {
             throw new RuntimeException('Cannot to parse the pdftoppm version!');
         }

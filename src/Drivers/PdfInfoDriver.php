@@ -5,6 +5,7 @@ namespace Lukasss93\PdfToPpm\Drivers;
 use Alchemy\BinaryDriver\AbstractBinary;
 use Alchemy\BinaryDriver\Configuration;
 use Alchemy\BinaryDriver\ConfigurationInterface;
+use Lukasss93\PdfToPpm\Runners\ProcessRunner;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 
@@ -36,7 +37,8 @@ class PdfInfoDriver extends AbstractBinary
 
         $binaries = $configuration->get('pdfinfo.binaries', ['pdfinfo']);
 
-        return static::load($binaries, $logger, $configuration);
+        return static::load($binaries, $logger, $configuration)
+            ->setProcessRunner(new ProcessRunner());
     }
 
     /**
@@ -47,7 +49,7 @@ class PdfInfoDriver extends AbstractBinary
      */
     public function getVersion(): string
     {
-        $valid = preg_match('/pdfinfo version (.*)/', $this->command('-v'), $version);
+        $valid = preg_match('/pdfinfo version (.*)/', $this->command(['-v']), $version);
         if ($valid === false || !isset($version[1])) {
             throw new RuntimeException('Cannot to parse the pdfinfo version!');
         }
