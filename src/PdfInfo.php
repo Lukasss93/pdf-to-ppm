@@ -52,5 +52,8 @@ class PdfInfo
         return new PdfInfoData($data);
     }
 
-
+    public function version(): string
+    {
+        return $this->driver->getVersion();
+    }
 }
