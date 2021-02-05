@@ -6,6 +6,16 @@ use Lukasss93\PdfToPpm\PdfInfo;
 
 class PdfInfoTest extends TestCase
 {
+    protected $binary;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->binary = PdfInfo::create([
+            'pdfinfo.binaries' => $_ENV['PDFINFO_BINARY_PATH']
+        ]);
+    }
+
     /**
      * @test
      * @dataProvider providerPdfs
@@ -13,7 +23,7 @@ class PdfInfoTest extends TestCase
      */
     public function it_get_the_pdf_informations(string $path): void
     {
-        $info = PdfInfo::create()
+        $info = $this->binary
             ->setPdf($path)
             ->get();
 
@@ -43,7 +53,7 @@ class PdfInfoTest extends TestCase
      */
     public function it_get_the_driver_version(): void
     {
-        $version = PdfInfo::create()->version();
+        $version = $this->binary->version();
         self::assertIsString($version);
     }
 }

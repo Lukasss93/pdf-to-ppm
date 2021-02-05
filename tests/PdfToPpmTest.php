@@ -9,6 +9,16 @@ use Lukasss93\PdfToPpm\PdfToPpm;
 
 class PdfToPpmTest extends TestCase
 {
+    protected $binary;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->binary = PdfToPpm::create([
+            'pdftoppm.binaries' => $_ENV['PDFTOPPM_BINARY_PATH']
+        ]);
+    }
+
     /**
      * @test
      * @param string $pdf
@@ -17,7 +27,7 @@ class PdfToPpmTest extends TestCase
      */
     public function it_get_the_number_of_pages(string $pdf, int $pages): void
     {
-        $value = PdfToPpm::create()
+        $value = $this->binary
             ->setPdf($pdf)
             ->getNumberOfPages();
 
@@ -33,7 +43,7 @@ class PdfToPpmTest extends TestCase
      */
     public function it_save_image(string $pdf, string $image): void
     {
-        $path = PdfToPpm::create()
+        $path = $this->binary
             ->setPdf($pdf)
             ->saveImage($image);
 
@@ -52,7 +62,7 @@ class PdfToPpmTest extends TestCase
      */
     public function it_save_all_pages_as_images(string $pdf, string $prefix): void
     {
-        $paths = PdfToPpm::create()
+        $paths = $this->binary
             ->setPdf($pdf)
             ->saveAllPagesAsImages(dirname(__DIR__).'/tests/images/', $prefix);
 
@@ -68,7 +78,7 @@ class PdfToPpmTest extends TestCase
      */
     public function it_get_the_driver_version(): void
     {
-        $version = PdfToPpm::create()->version();
+        $version = $this->binary->version();
         self::assertIsString($version);
     }
 

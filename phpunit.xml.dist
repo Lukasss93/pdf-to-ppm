@@ -22,5 +22,7 @@
     </filter>
     <php>
         <env name="CACHE_DRIVER" value="array"/>
+        <env name="PDFINFO_BINARY_PATH" value="/usr/bin/pdfinfo"/>
+        <env name="PDFTOPPM_BINARY_PATH" value="/usr/bin/pdftoppm"/>
     </php>
 </phpunit>
