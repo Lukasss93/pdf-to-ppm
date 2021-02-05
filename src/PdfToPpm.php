@@ -75,18 +75,6 @@ class PdfToPpm
     }
 
     /**
-     * Check if a format is valid.
-     *
-     * @param string $outputFormat
-     *
-     * @return bool
-     */
-    public function isValidOutputFormat(string $outputFormat): bool
-    {
-        return in_array($outputFormat, $this->validOutputFormats, true);
-    }
-
-    /**
      * Set a pdf path file.
      *
      * @param string $pdf
@@ -200,9 +188,9 @@ class PdfToPpm
      * Save the current pdf page as image.
      * @param string $pathToImage
      * @param string $prefix
-     * 
+     *
      * @return string
-     * 
+     *
      * @throws InvalidFormat
      */
     public function saveImage(string $pathToImage, string $prefix = ''): string
@@ -247,8 +235,7 @@ class PdfToPpm
 
             //set output format
             if ($this->outputFormat !== 'ppm') {
-                $correctFormat = $this->outputFormat === 'tif' ? 'tiff' : $this->outputFormat;
-                $command[] = "-$correctFormat";
+                $command[] = '-'.$this->getCorrectFormat($this->outputFormat);
             }
 
             //set gray output
@@ -264,32 +251,36 @@ class PdfToPpm
 
     /**
      * Save all pdf pages as images.
-     * 
+     *
      * @param string $directory
      * @param string $prefix
-     * 
+     *
      * @return string[]
-     * 
+     *
      * @throws InvalidDirectory
      * @throws InvalidFormat
      * @throws PageDoesNotExist
      */
     public function saveAllPagesAsImages(string $directory, string $prefix = ''): array
     {
-        if(!is_dir($directory)){
+        if (!is_dir($directory)) {
             throw new InvalidDirectory('The $directory parameter is an invalid directory');
         }
-        
+
         $numberOfPages = $this->getNumberOfPages();
 
         if ($numberOfPages === 0) {
             return [];
         }
 
+        if ($this->outputFormat === null) {
+            $this->setOutputFormat('jpg');
+        }
+
         return array_map(function ($pageNumber) use ($directory, $prefix) {
             $this->setPage($pageNumber);
 
-            $destination = rtrim($directory,'\/')."/{$prefix}{$pageNumber}.{$this->outputFormat}";
+            $destination = rtrim($directory, '\/')."/{$prefix}{$pageNumber}.{$this->outputFormat}";
 
             $this->saveImage($destination);
 
@@ -317,9 +308,40 @@ class PdfToPpm
         $outputFormat = strtolower($outputFormat);
 
         if (!$this->isValidOutputFormat($outputFormat)) {
-            throw new InvalidFormat("Format '{$outputFormat}' is not supported");
+            return 'jpg';
         }
 
         return $outputFormat;
+    }
+
+    /**
+     * Check if a format is valid.
+     *
+     * @param string $outputFormat
+     *
+     * @return bool
+     */
+    protected function isValidOutputFormat(string $outputFormat): bool
+    {
+        return in_array($outputFormat, $this->validOutputFormats, true);
+    }
+
+    protected function getCorrectFormat(string $format): string
+    {
+        switch ($format) {
+            case 'jpg':
+            case 'jpeg':
+                return 'jpeg';
+            case 'tif':
+            case 'tiff':
+                return 'tiff';
+            default:
+                return $format;
+        }
+    }
+
+    public function version(): string
+    {
+        return $this->driver->getVersion();
     }
 }

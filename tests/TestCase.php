@@ -38,4 +38,16 @@ class TestCase extends BaseTestCase
             'sample-corrupted-92' => [dirname(__DIR__).'/tests/files/sample-corrupted-92.pdf'],
         ];
     }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $files = glob(dirname(__DIR__).'/tests/images/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+    }
 }
