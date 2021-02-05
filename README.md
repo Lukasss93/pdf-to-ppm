@@ -4,11 +4,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/php-%3E%3D%207.3-blue"/>
-  <a href="https://packagist.org/packages/lukasss93/pdf-to-ppm">
-    <img src="https://poser.pugx.org/lukasss93/laravel-larex/downloads"/>
-  </a>
   <img alt="GitHub" src="https://img.shields.io/github/license/lukasss93/pdf-to-ppm">
-  <img src="https://img.shields.io/github/workflow/status/Lukasss93/laravel-larex/run-tests"/>
+  <img src="https://img.shields.io/github/workflow/status/lukasss93/pdf-to-ppm/run-tests/master"/>
 </p>
 
 <p align="center">
