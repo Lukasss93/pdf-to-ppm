@@ -1,12 +1,21 @@
-<center>
+<p align="center">
 <img style="max-height:400px" src="https://banners.beyondco.de/pdf-to-ppm.png?theme=dark&packageManager=composer+require&packageName=lukasss93%2Fpdf-to-ppm&pattern=topography&style=style_1&description=PHP+wrapper+for+the+pdftoppm+command+which+is+part+of+poppler-utils&md=1&showWatermark=0&fontSize=125px&images=photograph">
-</center>
+</p>
 
-# Convert a pdf to an image
+<p align="center">
+  <img src="https://img.shields.io/badge/php-%3E%3D%207.3-blue"/>
+  <a href="https://packagist.org/packages/lukasss93/pdf-to-ppm">
+    <img src="https://poser.pugx.org/lukasss93/laravel-larex/downloads"/>
+  </a>
+  <img alt="GitHub" src="https://img.shields.io/github/license/lukasss93/pdf-to-ppm">
+  <img src="https://img.shields.io/github/workflow/status/Lukasss93/laravel-larex/run-tests"/>
+</p>
 
-TODO: badges
-
-PHP wrapper for the [pdftoppm](http://linux.die.net/man/1/pdftoppm) command which is part of [poppler-utils](http://en.wikipedia.org/wiki/Poppler_(software)).
+<p align="center">
+<b style="font-size: 25px;">Convert a pdf to an image</b><br>
+PHP wrapper for the <a href="http://linux.die.net/man/1/pdftoppm">pdftoppm</a> command which 
+is part of <a href="http://en.wikipedia.org/wiki/Poppler_(software)">poppler-utils</a>.
+</p>
 
 ## Requirements
 
