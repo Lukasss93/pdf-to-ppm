@@ -18,7 +18,7 @@ jobs:
                 run: |
                     sudo apt-get purge poppler-utils
                     sudo apt-get install build-essential checkinstall
-                    wget --directory-prefix=~ poppler.freedesktop.org/poppler-0.86.1.tar.xz
+                    wget -P ~ poppler.freedesktop.org/poppler-0.86.1.tar.xz
                     tar -xvzf ~/poppler-0.86.1.tar.xz
                     cd ~/poppler-0.86.1
                     ./configure
