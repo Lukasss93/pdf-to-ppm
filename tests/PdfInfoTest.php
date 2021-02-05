@@ -53,6 +53,9 @@ class PdfInfoTest extends TestCase
      */
     public function it_get_the_driver_version(): void
     {
+        var_dump($this->binary->getDriver()->getConfiguration()->all());
+
+
         $version = $this->binary->version();
         self::assertIsString($version);
     }

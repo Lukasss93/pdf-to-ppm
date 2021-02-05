@@ -56,4 +56,9 @@ class PdfInfo
     {
         return $this->driver->getVersion();
     }
+
+    public function getDriver(): PdfInfoDriver
+    {
+        return $this->driver;
+    }
 }
