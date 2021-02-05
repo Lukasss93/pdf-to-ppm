@@ -9,23 +9,13 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ 7.3, 7.4, 8.0 ]
-                os: [ ubuntu-latest ]
+                os: [ ubuntu-20.04 ]
 
         name: P${{ matrix.php }} - ${{ matrix.os }}
 
         steps:
             -   name: Install poppler-utils
-                run: |
-                    sudo apt-get purge poppler-utils
-                    sudo apt-get install build-essential checkinstall
-                    wget -P . poppler.freedesktop.org/poppler-0.86.1.tar.xz
-                    tar -xf ./poppler-0.86.1.tar.xz
-                    ls -l
-                    cd ./poppler-0.86.1
-                    ls -l
-                    ./configure
-                    make
-                    sudo checkinstall
+                run: sudo apt-get install poppler-utils
 
             -   name: Get pdfinfo version
                 run: pdfinfo -v
