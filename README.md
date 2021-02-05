@@ -1,5 +1,5 @@
 <center>
-<img height="400" src="https://banners.beyondco.de/pdf-to-ppm.png?theme=dark&packageManager=composer+require&packageName=lukasss93%2Fpdf-to-ppm&pattern=topography&style=style_1&description=PHP+wrapper+for+the+pdftoppm+command+which+is+part+of+poppler-utils&md=1&showWatermark=0&fontSize=125px&images=photograph">
+<img style="max-height:400px" src="https://banners.beyondco.de/pdf-to-ppm.png?theme=dark&packageManager=composer+require&packageName=lukasss93%2Fpdf-to-ppm&pattern=topography&style=style_1&description=PHP+wrapper+for+the+pdftoppm+command+which+is+part+of+poppler-utils&md=1&showWatermark=0&fontSize=125px&images=photograph">
 </center>
 
 # Convert a pdf to an image
@@ -58,8 +58,8 @@ $pdf = PdfToPpm::create()->setPdf($pathToPdf);
 $pdf->saveImage($pathToWhereImageShouldBeStored); // it will save the first page
 ```
 
-If the path you pass to `saveImage` has the extensions `ppm`, `jpg`, `jpeg`, `png` or `tiff` the image will be saved in that format.
-Otherwise the output will be a jpg.
+If the path you pass to `saveImage` has the extensions `ppm`, `jpg`, `png` or `tif` the image will be saved in that
+format. Otherwise the output will be a jpg.
 
 Converting all pdf pages:
 
