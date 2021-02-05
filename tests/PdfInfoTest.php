@@ -33,6 +33,7 @@ class PdfInfoTest extends TestCase
         self::assertIsStringOrNull($info->getPageRot());
         self::assertIsStringOrNull($info->getFileSize());
         self::assertIsStringOrNull($info->getOptimized());
+        self::assertIsStringOrNull($info->getPdfVersion());
 
         self::assertIsArray($info->toArray());
     }
