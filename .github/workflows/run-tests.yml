@@ -18,7 +18,9 @@ jobs:
                 run: sudo apt-get install poppler-utils
 
             -   name: Get pdfinfo version
-                run: pdfinfo -v
+                run: |
+                    which pdfinfo
+                    pdfinfo -v
 
             -   name: Checkout code
                 uses: actions/checkout@v2
