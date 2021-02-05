@@ -14,6 +14,9 @@ jobs:
         name: P${{ matrix.php }} - ${{ matrix.os }}
 
         steps:
+            -   name: Install poppler-utils
+                run: sudo apt-get install -y poppler-utils
+
             -   name: Checkout code
                 uses: actions/checkout@v2
 
@@ -31,7 +34,7 @@ jobs:
                     coverage: xdebug
 
             -   name: Install dependencies
-                run: composer install
+                run: composer update --prefer-dist --no-interaction --no-suggest
 
             -   name: Execute tests
                 run: composer test-coverage
