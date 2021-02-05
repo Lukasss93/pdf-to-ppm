@@ -85,7 +85,9 @@ class PdfToPpm
     {
         $this->pdf = $pdf;
 
-        $this->numberOfPages = PdfInfo::create()
+        $this->numberOfPages = PdfInfo::create([
+            'pdfinfo.binaries' => $_ENV['PDFINFO_BINARY_PATH']
+        ])
             ->setPdf($this->pdf)
             ->get()
             ->getPages();
