@@ -25,6 +25,13 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v2
 
+            -   name: Testing total pages
+                run: |
+                    pwd
+                    pdfinfo ./tests/files/sample-4.pdf
+                    pdfinfo ./tests/files/sample-30.pdf
+                    pdfinfo ./tests/files/sample-corrupted-92.pdf
+
             -   name: Cache dependencies
                 uses: actions/cache@v1
                 with:
