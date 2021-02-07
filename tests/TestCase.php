@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Lukasss93\PdfToPpm\Test;
-
 
 use DateTime;
 use PHPUnit\Framework\Constraint\IsType;
@@ -28,15 +26,6 @@ class TestCase extends BaseTestCase
     public static function assertIsDateTimeOrNull($value): void
     {
         self::assertThat($value, self::logicalOr(self::isInstanceOf(DateTime::class), self::isNull()));
-    }
-
-    public function providerPdfs(): array
-    {
-        return [
-            'sample-4'            => [dirname(__DIR__).'/tests/files/sample-4.pdf'],
-            'sample-30'           => [dirname(__DIR__).'/tests/files/sample-30.pdf'],
-            'sample-corrupted-92' => [dirname(__DIR__).'/tests/files/sample-corrupted-92.pdf'],
-        ];
     }
 
     protected function tearDown(): void

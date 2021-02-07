@@ -53,10 +53,15 @@ class PdfInfoTest extends TestCase
      */
     public function it_get_the_driver_version(): void
     {
-        var_dump($this->binary->getDriver()->getConfiguration()->all());
-
-
         $version = $this->binary->version();
         self::assertIsString($version);
+    }
+
+    public function providerPdfs(): array
+    {
+        return [
+            'sample-4'  => [dirname(__DIR__).'/tests/files/sample-4.pdf'],
+            'sample-30' => [dirname(__DIR__).'/tests/files/sample-30.pdf'],
+        ];
     }
 }

@@ -89,7 +89,6 @@ class PdfToPpmTest extends TestCase
         return [
             'sample-4'            => [dirname(__DIR__).'/tests/files/sample-4.pdf', 4],
             'sample-30'           => [dirname(__DIR__).'/tests/files/sample-30.pdf', 30],
-            'sample-corrupted-92' => [dirname(__DIR__).'/tests/files/sample-corrupted-92.pdf', 92],
         ];
     }
 
@@ -104,10 +103,6 @@ class PdfToPpmTest extends TestCase
                 dirname(__DIR__).'/tests/files/sample-30.pdf',
                 dirname(__DIR__).'/tests/images/sample-30-first-page.jpg',
             ],
-            'sample-corrupted-92' => [
-                dirname(__DIR__).'/tests/files/sample-corrupted-92.pdf',
-                dirname(__DIR__).'/tests/images/sample-corrupted-92-first-page.jpg',
-            ],
         ];
     }
 
@@ -116,7 +111,6 @@ class PdfToPpmTest extends TestCase
         return [
             'sample-4'            => [dirname(__DIR__).'/tests/files/sample-4.pdf', 'sample-4-'],
             'sample-30'           => [dirname(__DIR__).'/tests/files/sample-30.pdf', 'sample-30-'],
-            'sample-corrupted-92' => [dirname(__DIR__).'/tests/files/sample-corrupted-92.pdf', 'sample-corrupted-92-'],
         ];
     }
 

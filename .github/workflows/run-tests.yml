@@ -17,20 +17,8 @@ jobs:
             -   name: Install poppler-utils
                 run: sudo apt-get install poppler-utils
 
-            -   name: Get pdfinfo version
-                run: |
-                    which pdfinfo
-                    pdfinfo -v
-
             -   name: Checkout code
                 uses: actions/checkout@v2
-
-            -   name: Testing total pages
-                run: |
-                    pwd
-                    pdfinfo ./tests/files/sample-4.pdf
-                    pdfinfo ./tests/files/sample-30.pdf
-                    pdfinfo ./tests/files/sample-corrupted-92.pdf
 
             -   name: Cache dependencies
                 uses: actions/cache@v1
