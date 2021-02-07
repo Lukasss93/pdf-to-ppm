@@ -3,9 +3,14 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/php-%3E%3D%207.3-blue"/>
+  <img src="https://img.shields.io/packagist/php-v/lukasss93/pdf-to-ppm"/>
+  <img alt="Packagist Version" src="https://img.shields.io/packagist/v/lukasss93/pdf-to-ppm">
+  <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dt/lukasss93/pdf-to-ppm">
   <img alt="GitHub" src="https://img.shields.io/github/license/lukasss93/pdf-to-ppm">
   <img src="https://img.shields.io/github/workflow/status/lukasss93/pdf-to-ppm/run-tests/master"/>
+  <a href="https://codecov.io/gh/Lukasss93/pdf-to-ppm">
+    <img src="https://img.shields.io/codecov/c/github/lukasss93/pdf-to-ppm?token=PBOM54F38W"/>
+  </a>
 </p>
 
 <p align="center">
