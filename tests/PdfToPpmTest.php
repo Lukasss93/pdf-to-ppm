@@ -46,11 +46,32 @@ class PdfToPpmTest extends TestCase
         $path = $this->binary
             ->setPdf($pdf)
             ->saveImage($image);
-
+        
         self::assertEquals($image, $path);
         self::assertFileExists($image);
     }
-
+    
+    /**
+     * @test
+     * @throws InvalidFormat
+     */
+    public function it_save_image_with_different_resolution(): void
+    {
+        $path50 = $this->binary
+            ->setPdf(dirname(__DIR__) . '/tests/files/sample-4.pdf')
+            ->setResolution(50)
+            ->saveImage(dirname(__DIR__) . '/tests/images/image-resolution-50.jpg');
+        
+        $path500 = $this->binary
+            ->setPdf(dirname(__DIR__) . '/tests/files/sample-4.pdf')
+            ->setResolution(500)
+            ->saveImage(dirname(__DIR__) . '/tests/images/image-resolution-500.jpg');
+        
+        self::assertFileExists($path50);
+        self::assertFileExists($path500);
+        self::assertNotEquals(filesize($path50), filesize($path500));
+    }
+    
     /**
      * @test
      * @param string $pdf

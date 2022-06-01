@@ -209,40 +209,7 @@ class PdfToPpm
             $pathToImage = $basePath;
         }
 
-        //init command
-        $command = [
-            //input file
-            $this->pdf,
-
-            //output dir
-            $pathToImage,
-        ];
-
-        if (count($this->options) > 0) {
-            $command += $this->options;
-        } else {
-            $command += [
-                //output resolution
-                '-r', $this->resolution,
-
-                //output page
-                '-f', $this->page,
-                '-l', $this->page,
-
-                //no page suffix
-                '-singlefile'
-            ];
-
-            //set output format
-            if ($this->outputFormat !== 'ppm') {
-                $command[] = '-'.$this->getCorrectFormat($this->outputFormat);
-            }
-
-            //set gray output
-            if ($this->gray) {
-                $command[] = '-gray';
-            }
-        }
+        $command = $this->buildCommand($pathToImage);
 
         $this->driver->command($command);
 
@@ -276,18 +243,23 @@ class PdfToPpm
         if ($this->outputFormat === null) {
             $this->setOutputFormat('jpg');
         }
-
+    
         return array_map(function ($pageNumber) use ($directory, $prefix) {
             $this->setPage($pageNumber);
-
-            $destination = rtrim($directory, '\/')."/{$prefix}{$pageNumber}.{$this->outputFormat}";
-
+        
+            $destination = rtrim($directory, '\/') . "/{$prefix}{$pageNumber}.{$this->outputFormat}";
+        
             $this->saveImage($destination);
-
+        
             return $destination;
         }, range(1, $numberOfPages));
     }
-
+    
+    public function version(): string
+    {
+        return $this->driver->getVersion();
+    }
+    
     /**
      * Returns a valid output format from a path.
      *
@@ -339,9 +311,48 @@ class PdfToPpm
                 return $format;
         }
     }
-
-    public function version(): string
+    
+    protected function buildCommand(string $pathToImage): array
     {
-        return $this->driver->getVersion();
+        //init command
+        $command = [
+            //input file
+            $this->pdf,
+            
+            //output dir
+            $pathToImage,
+        ];
+        
+        if (count($this->options) > 0) {
+            return array_merge($command, $this->options);
+        }
+        
+        $command = array_merge($command, [
+            //output resolution
+            '-r',
+            $this->resolution,
+            
+            //output page
+            '-f',
+            $this->page,
+            '-l',
+            $this->page,
+            
+            //no page suffix
+            '-singlefile'
+        ]);
+        
+        //set output format
+        if ($this->outputFormat !== 'ppm') {
+            $command[] = '-' . $this->getCorrectFormat($this->outputFormat);
+        }
+        
+        //set gray output
+        if ($this->gray) {
+            $command[] = '-gray';
+        }
+        
+        return $command;
     }
+    
 }
